@@ -17,7 +17,7 @@ namespace Calliope
             public List<LogEntry> _logEntries = new List<LogEntry>();
         }
 
-        [MenuItem("Calliope/Log Manager")]
+        [MenuItem("Tools/Calliope/Calliope Log Manager")]
         public static void ShowWindow() 
         {
             EditorWindow.GetWindow(typeof(CalliopeLogEditorWindow));
@@ -34,6 +34,17 @@ namespace Calliope
             GUILayoutOption[] categoryVerticalGroupOptions = { GUILayout.Height(10.0f) };
             GUILayout.BeginVertical();
             _scrollPos = GUILayout.BeginScrollView(_scrollPos);
+            bool hasDefine = Calliope.PreprocessorDefines.HasDefine();
+            bool shouldBeEnabled = GUILayout.Toggle(hasDefine, "Logs Compiled");
+            if (shouldBeEnabled && !hasDefine)
+            {
+                Calliope.PreprocessorDefines.AddDefineSymbols();
+            }
+            else if(!shouldBeEnabled && hasDefine)
+            {
+                Calliope.PreprocessorDefines.RemoveDefineSymbols();
+            }
+
             GUILayout.Label("Log Categories", EditorStyles.largeLabel);
             foreach (LogEntry entry in _savedSettings._logEntries)
             {
@@ -103,8 +114,8 @@ namespace Calliope
 
         void UpdateCalliopeCategories()
         {
-            CalliopeLogManager.Instance._logEntries = _savedSettings._logEntries;
-            CalliopeLogManager.Instance.RegisterCategories();
+            CalliopeLogManager._logEntries = _savedSettings._logEntries;
+            CalliopeLogManager.RegisterCategories();
         }
     }
 }

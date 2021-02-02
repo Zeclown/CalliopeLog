@@ -29,32 +29,21 @@ namespace Calliope
         public bool _enabled;
     }
 
-    [ExecuteInEditMode]
-    public class CalliopeLogManager : MonoBehaviour
+#if UNITY_EDITOR
+    [UnityEditor.InitializeOnLoad]
+#endif
+    public static class CalliopeLogManager
     {
-        private static CalliopeLogManager _instance = null;
-        public static CalliopeLogManager Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = (CalliopeLogManager)FindObjectOfType(typeof(CalliopeLogManager));
-                    if (_instance == null)
-                        _instance = (new GameObject("CalliopeLogManager")).AddComponent<CalliopeLogManager>();
-                }
-                return _instance;
-            }
-        }
 
-        public List<LogEntry> _logEntries = new List<LogEntry>();
+        public static List<LogEntry> _logEntries = new List<LogEntry>();
 
-        void Awake()
+        static CalliopeLogManager()
         {
             RegisterCategories();
         }
 
-        public void RegisterCategories()
+        [RuntimeInitializeOnLoadMethod]
+        public static void RegisterCategories()
         {
             Calliope.LogRegistry.Clear();
             for (int i = 0; i < _logEntries.Count; ++i)
