@@ -1,0 +1,15 @@
+{
+    "name": "com.unity.calliopelog",
+    "displayName": "CalliopeLog",
+    "version": "1.0.0",
+    "unity": "2019.4",
+    "description": "Log system that can be compiled out and features categories and verbosity levels.",
+    "keywords": [
+      "logs",
+      "Calliope",
+      "CalliopeLog"
+    ],
+    "category": "Logs",
+    "dependencies": {}
+  }
+  
