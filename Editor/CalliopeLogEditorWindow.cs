@@ -8,7 +8,6 @@ namespace Calliope
 {
     public class CalliopeLogEditorWindow : EditorWindow
     {
-        const string JSON_SETTINGS_FILE_PATH = "/CalliopeLog/Settings.json";
         CalliopeLogFileHelpers.SavedSettings _savedSettings = new CalliopeLogFileHelpers.SavedSettings();
 
 

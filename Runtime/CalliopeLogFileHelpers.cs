@@ -8,7 +8,7 @@ namespace Calliope
 {
     public static class CalliopeLogFileHelpers
     {
-        const string JSON_SETTINGS_FILE_PATH = "/CalliopeLog/Settings.json";
+        const string JSON_SETTINGS_FILE_PATH = "/CalliopeLog/Resources/Settings.json";
         [Serializable]
         public class SavedSettings
         {
@@ -20,7 +20,8 @@ namespace Calliope
             SavedSettings savedSettings = null;
             try
             {
-                string categoryJson = System.IO.File.ReadAllText(Application.dataPath + JSON_SETTINGS_FILE_PATH);
+                TextAsset targetFile = Resources.Load<TextAsset>(System.IO.Path.GetFileNameWithoutExtension(JSON_SETTINGS_FILE_PATH));
+                string categoryJson = targetFile.text;
                 savedSettings = JsonUtility.FromJson(categoryJson, typeof(SavedSettings)) as SavedSettings;
             }
             catch (Exception e)
