@@ -34,9 +34,6 @@ namespace Calliope
 #endif
     public static class CalliopeLogManager
     {
-
-        public static List<LogEntry> _logEntries = new List<LogEntry>();
-
         static CalliopeLogManager()
         {
             RegisterCategories();
@@ -45,15 +42,16 @@ namespace Calliope
         [RuntimeInitializeOnLoadMethod]
         public static void RegisterCategories()
         {
+            List<LogEntry> logEntries = Calliope.CalliopeLogFileHelpers.LoadSettings()._logEntries;
             Calliope.LogRegistry.Clear();
-            for (int i = 0; i < _logEntries.Count; ++i)
+            for (int i = 0; i < logEntries.Count; ++i)
             {
-                if (_logEntries[i]._enabled)
+                if (logEntries[i]._enabled)
                 {
                     Calliope.LogRegistry.LogEntryInfo newEntry = new LogRegistry.LogEntryInfo();
-                    newEntry.categoryName = _logEntries[i]._category.ToString();
-                    newEntry.verbosity = (int)_logEntries[i]._verbosity;
-                    Calliope.LogRegistry.EnableLogEntry((int)_logEntries[i]._category, newEntry);
+                    newEntry.categoryName = logEntries[i]._category.ToString();
+                    newEntry.verbosity = (int)logEntries[i]._verbosity;
+                    Calliope.LogRegistry.EnableLogEntry((int)logEntries[i]._category, newEntry);
                 }
             }
         }

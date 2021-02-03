@@ -1,0 +1,39 @@
+{
+    "_logEntries": [
+        {
+            "_category": 0,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 1,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 2,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 3,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 4,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 5,
+            "_verbosity": 2,
+            "_enabled": true
+        },
+        {
+            "_category": 6,
+            "_verbosity": 2,
+            "_enabled": true
+        }
+    ]
+}
